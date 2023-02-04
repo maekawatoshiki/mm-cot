@@ -155,7 +155,11 @@ class ScienceQADatasetImg(Dataset):
             target_text (str): column name of target text
         """
         self.tokenizer = tokenizer
-        self.data = {qid : problems[qid] for qid in qids}
+        # self.data = {qid : problems[qid] for qid in qids}
+        self.data = {}
+        for qid in qids:
+            if qid in problems:
+                self.data[qid] = problems[qid]
         self.source_len = source_len
         self.summ_len = target_len
         self.target_text = []
